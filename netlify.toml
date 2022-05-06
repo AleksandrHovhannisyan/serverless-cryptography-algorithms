@@ -1,0 +1,7 @@
+[dev]
+  command = "npm run serve"
+  publish = "_site/"
+
+[build]
+  publish = "_site/"
+  command = "npm run build"

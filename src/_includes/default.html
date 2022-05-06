@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title | default: site.title }}</title>
+    <meta name="description" content="{{ description | default: site.description }}">
+    <meta name="keywords" content="{{ site.keywords | join: ", " }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="{{ site.author }}">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        html,
+        body {
+            height: 100%;
+        }
+        body {
+            max-width: 40rem;
+            margin: 0 auto;
+            padding: 0 1rem;
+            font-size: 125%;
+            font-family: Georgia;
+            line-height: 1.6;
+        }
+        h1,
+        h2,
+        h3 {
+            line-height: 1.3;
+        }
+        input,
+        select,
+        option,
+        button {
+            font: inherit;
+        }
+    </style>
+</head>
+<body>
+    {{ content }}
+</body>
+</html>

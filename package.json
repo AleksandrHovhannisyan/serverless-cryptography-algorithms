@@ -1,0 +1,14 @@
+{
+  "name": "11ty-serverless-cryptography",
+  "version": "1.0.0",
+  "author": "AleksandrHovhannisyan",
+  "description": "Cryptography algorithms in 11ty serverless",
+  "license": "MIT",
+  "scripts": {
+    "serve": "npx @11ty/eleventy --serve --incremental",
+    "build": "npx @11ty/eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^1.0.1"
+  }
+}

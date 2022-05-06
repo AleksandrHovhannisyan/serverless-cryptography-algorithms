@@ -1,0 +1,21 @@
+---
+title: Caesar Cipher
+description: A weak substitution cipher that shifts the plaintext alphabet by a certain number of places.
+infoUrl: https://en.wikipedia.org/wiki/Caesar_cipher 
+permalink: /caesar/
+---
+
+<form action="/translate" method="get">
+    <label>Message <input name="message" type="text" minlength="0" required></label>
+    <label>Caesar shift <input name="shift" type="number" value="13" step="1" min="1" required></label>
+    <label>Alphabet <input name="alphabet" type="text" value="{{ alphabets.english }}" required></label>
+    <label>
+        Operation
+        <select name="operation">
+            <option value="encipher">Encipher</option>
+            <option value="decipher">Decipher</option>
+        </select>
+    </label>
+    <input hidden name="cipher" type="text" value="caesar" />
+    <button type="submit">Submit</button>
+</form>
