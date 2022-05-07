@@ -5,4 +5,5 @@ layout: default
 <h1 aria-describedby="description">{{ title }}</h1>
 <p id="description">{{ description }}</p>
 <a href="{{ infoUrl }}" target="_blank" rel="noreferrer noopener">Learn more about this algorithm</a>
+<input hidden name="algorithm" type="text" value="{{ id }}" form="form" />
 {{ content }}

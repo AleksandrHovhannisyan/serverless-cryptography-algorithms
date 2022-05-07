@@ -12,3 +12,10 @@ to = "/.netlify/functions/onrequest"
 status = 200
 force = true
 _generated_by_eleventy_serverless = "onrequest"
+
+[[redirects]]
+from = "/atbash"
+to = "/.netlify/functions/onrequest"
+status = 200
+force = true
+_generated_by_eleventy_serverless = "onrequest"

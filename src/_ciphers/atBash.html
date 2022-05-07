@@ -1,17 +1,15 @@
 ---
-title: Keyed Caesar Cipher
-description: A monoalphabetic substitution cipher that shifts a plaintext alphabet by a certain number of places to the right to produce a cipher alphabet. In a variation known as the keyed Caesar cipher, the plaintext alphabet is 'keyed' (prefixed) with non-repeating letters from a chosen passphrase or word, and the resulting keyed alphabet is then shifted. Of particular note is a Caesar cipher of shift 13 performed on the English alphabet—known as rot13—because enciphering and deciphering are symmetric operations.
-infoUrl: https://en.wikipedia.org/wiki/Caesar_cipher 
+title: Atbash Cipher
+description: A naive monoalphabetic substitution cipher that simply reverses the plaintext alphabet.
+infoUrl: https://en.wikipedia.org/wiki/Atbash
 permalink:
-    onrequest: /caesar
+    onrequest: /atbash
 ---
 
 <section>
     <h2 id="input">Input</h2>
     <form method="get" id="form">
         <label>Message <input name="message" type="text" minlength="0" required value="{{ eleventy.serverless.query.message | default: '' }}"></label>
-        <label>Caesar shift <input name="shift" type="number" value="{{ eleventy.serverless.query.shift | default: 13 }}" step="1" min="1" required></label>
-        <label>Key <input name="key" type="text" value="{{ eleventy.serverless.query.key | default: '' }}"></label>
         <label>Plaintext alphabet <input name="alphabet" type="text" value="{{ eleventy.serverless.query.alphabet | default: alphabets.english }}" required></label>
         <label>
             Operation
