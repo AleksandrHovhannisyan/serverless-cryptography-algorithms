@@ -1,6 +1,6 @@
 {
     "title": "Cryptography Algorithms",
-    "description": "Play with your favorite codes and ciphers.",
+    "description": "Implementations of various cryptography algorithms.",
     "keywords": ["cryptography", "ciphers", "codes"],
     "author": "Aleksandr Hovhannisyan"
 }
