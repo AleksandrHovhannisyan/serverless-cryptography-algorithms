@@ -18,8 +18,8 @@ const generateCaesarCipher = (shift, plaintextAlphabet, key = "") => {
     });
 
   const encipher = (message) => {
-    const letters = message.split("");
-    return letters
+    return message
+      .split("")
       .map((letter) => {
         const index = plaintextAlphabet.indexOf(letter.toLowerCase());
         return cipherAlphabet[index];
@@ -28,8 +28,8 @@ const generateCaesarCipher = (shift, plaintextAlphabet, key = "") => {
   };
 
   const decipher = (message) => {
-    const letters = message.split("");
-    return letters
+    return message
+      .split("")
       .map((letter) => {
         const index = cipherAlphabet.indexOf(letter.toLowerCase());
         return plaintextAlphabet[index];
