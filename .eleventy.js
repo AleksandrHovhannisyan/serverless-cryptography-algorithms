@@ -3,6 +3,7 @@ const { outputShortcode } = require("./11ty/shortcodes");
 
 module.exports = (eleventyConfig) => {
   eleventyConfig.addShortcode('output', outputShortcode);
+  eleventyConfig.addFilter('keylength', (obj) => Object.keys(obj).length);
   
   eleventyConfig.addPlugin(EleventyServerlessBundlerPlugin, {
     name: "onrequest",
