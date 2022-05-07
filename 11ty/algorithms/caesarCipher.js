@@ -1,13 +1,4 @@
 const generateCaesarCipher = (shift, plaintextAlphabet, key = "") => {
-  // A shift of 0 or the length of the alphabet will yield the original alphabet.
-  if ((shift % plaintextAlphabet.length) === 0) {
-    throw new Error(
-      `Invalid caesar shift. Valid values range from ${1} through ${
-        plaintextAlphabet.length - 1
-      }.`
-    );
-  }
-
   // Example: HELLO => HELO
   const keyedAlphabet = new Set(key.toLowerCase().split(""));
 
