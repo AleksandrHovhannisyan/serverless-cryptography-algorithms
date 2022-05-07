@@ -1,7 +1,14 @@
 [dev]
-  command = "npm run serve"
-  publish = "_site/"
+command = "npm run serve"
+publish = "_site/"
 
 [build]
-  publish = "_site/"
-  command = "npm run build"
+publish = "_site/"
+command = "npm run build"
+
+[[redirects]]
+from = "/translate"
+to = "/.netlify/functions/onrequest"
+status = 200
+force = true
+_generated_by_eleventy_serverless = "onrequest"
