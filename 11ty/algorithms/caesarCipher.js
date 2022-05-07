@@ -17,27 +17,21 @@ const generateCaesarCipher = (shift, plaintextAlphabet, key = "") => {
       return alphabet[newIndex].toLowerCase();
     });
 
-  const encipher = (message) => {
+  const makeTranslator = (sourceAlphabet, targetAlphabet) => (message) => {
     return message
       .split("")
       .map((letter) => {
-        const index = plaintextAlphabet.indexOf(letter.toLowerCase());
-        return cipherAlphabet[index];
+        const index = sourceAlphabet.indexOf(letter.toLowerCase());
+        return targetAlphabet[index];
       })
       .join("");
   };
 
-  const decipher = (message) => {
-    return message
-      .split("")
-      .map((letter) => {
-        const index = cipherAlphabet.indexOf(letter.toLowerCase());
-        return plaintextAlphabet[index];
-      })
-      .join("");
+  return {
+    cipherAlphabet,
+    encipher: makeTranslator(plaintextAlphabet, cipherAlphabet),
+    decipher: makeTranslator(cipherAlphabet, plaintextAlphabet),
   };
-
-  return { cipherAlphabet, encipher, decipher };
 };
 
 module.exports = generateCaesarCipher;
