@@ -1,7 +1,10 @@
 ---
+layout: default
 permalink:
     onrequest: /translate
 ---
 
-{{ eleventy.serverless.query }}
-{{ eleventy.serverless.query | log }}
+<h1>When you {{ eleventy.serverless.query.operation | escape }} <code>{{ eleventy.serverless.query.message | escape }}</code>, you get:</h1>
+<output>
+    {% output eleventy.serverless.query %}
+</output>

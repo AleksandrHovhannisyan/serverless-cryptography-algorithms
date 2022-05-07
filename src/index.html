@@ -5,11 +5,11 @@ permalink: /
 
 <h1>{{ site.title }}</h1>
 <nav>
-    <ul>
-        {% for cipher in collections.ciphers %}
-        <li>
-            <a href="{{ cipher.data.permalink }}">{{ cipher.data.title }}</a>
-        </li>
-        {% endfor %}
-    </ul>
+  <ul>
+    {% for algorithm in collections.algorithms %}
+    <li>
+      <a href="{{ algorithm.data.permalink }}">{{ algorithm.data.title }}</a>
+    </li>
+    {% endfor %}
+  </ul>
 </nav>

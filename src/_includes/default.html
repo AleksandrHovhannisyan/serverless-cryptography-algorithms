@@ -16,13 +16,17 @@
         body {
             height: 100%;
         }
+        html {
+            --color-surface-1: hsl(0, 0%, 95%);
+        }
         body {
             max-width: 40rem;
             margin: 0 auto;
             padding: 0 1rem;
             font-size: 125%;
-            font-family: Georgia;
+            font-family: Arial, sans-serif;
             line-height: 1.6;
+            overflow-wrap: break-word;
         }
         h1,
         h2,
@@ -35,9 +39,29 @@
         button {
             font: inherit;
         }
+        label {
+            display: block;
+            margin-block: 1rem;
+            width: fit-content;
+        }
+        form {
+            margin-block: 2.5rem;
+        }
+        code,
+        output {
+            background-color: var(--color-surface-1);
+        }
+        output {
+            user-select: all;
+            display: block;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 2px;
+            border: solid 1px hsl(0, 0%, 60%);
+        }
     </style>
 </head>
 <body>
-    {{ content }}
+    <main>{{ content }}</main>
 </body>
 </html>
