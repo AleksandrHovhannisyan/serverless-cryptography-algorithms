@@ -4,21 +4,20 @@ const generateAtbashCipher = (plaintextAlphabet) => {
     .reverse();
 
   const encipher = (message) => {
-    console.log(`enciphering`, message);
-    const letters = message.split("");
-    return letters
-      .map((letter) => {
-        const index = plaintextAlphabet.indexOf(letter.toLowerCase());
+    const symbols = message.split("").toLowerCase();
+    return symbols
+      .map((symbol) => {
+        const index = plaintextAlphabet.indexOf(symbol);
         return cipherAlphabet[index];
       })
       .join("");
   };
 
   const decipher = (message) => {
-    const letters = message.split("");
-    return letters
-      .map((letter) => {
-        const index = cipherAlphabet.indexOf(letter.toLowerCase());
+    const symbols = message.split("").toLowerCase();
+    return symbols
+      .map((symbol) => {
+        const index = cipherAlphabet.indexOf(symbol);
         return plaintextAlphabet[index];
       })
       .join("");

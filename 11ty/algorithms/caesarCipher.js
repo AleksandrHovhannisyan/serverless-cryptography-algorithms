@@ -18,9 +18,10 @@ const generateCaesarCipher = (shift, plaintextAlphabet, key = "") => {
 
   const makeTranslator = (sourceAlphabet, targetAlphabet) => (message) => {
     return message
+      .toLowerCase()
       .split("")
-      .map((letter) => {
-        const index = sourceAlphabet.indexOf(letter.toLowerCase());
+      .map((symbol) => {
+        const index = sourceAlphabet.indexOf(symbol);
         return targetAlphabet[index];
       })
       .join("");
