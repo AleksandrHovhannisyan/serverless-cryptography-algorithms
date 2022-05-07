@@ -14,12 +14,15 @@
         }
         html {
             --color-surface-1: hsl(0, 0%, 95%);
-            scrollbar-gutter: stable both-edges;
+        }
+        html,
+        body {
+            height: 100%;
         }
         body {
             max-width: 40rem;
+            padding: 0 1rem;
             margin: 0 auto;
-            padding: 1rem;
             font-size: 125%;
             font-family: Arial, sans-serif;
             line-height: 1.6;
@@ -27,6 +30,10 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+        }
+        main {
+            flex: 1;
+            padding: 1rem 0;
         }
         h1,
         h2,
@@ -36,19 +43,24 @@
         input,
         select,
         option,
-        button {
+        button,
+        textarea {
             font: inherit;
         }
         label {
             display: block;
             margin-block: 1rem;
-            width: fit-content;
         }
-        form {
-            /* margin-block: 2.5rem; */
+        textarea {
+            display: block;
+            width: 100%;
         }
-        code,
-        output {
+        input,
+        select,
+        textarea {
+            padding: 4px;
+        }
+        code {
             background-color: var(--color-surface-1);
         }
         section {
@@ -69,14 +81,19 @@
             margin: 0;
             display: inline-block;
         }
+        .navbar,
+        .page-footer {
+            padding: 2rem 0;
+        }
     </style>
 </head>
 <body>
-    <header>
+    <header class="navbar">
         <nav aria-label="Primary">
             <a href="/">Home</a>
         </nav>
     </header>
     <main>{{ content }}</main>
+    <footer class="page-footer">Made by <a href="https://www.aleksandrhovhannisyan.com/" rel="noreferrer noopener" target="_blank">Aleksandr Hovhannisyan</a> with <a href="https://11ty.dev/" rel="noreferrer noopener" target="_blank">11ty</a>.</footer>
 </body>
 </html>
