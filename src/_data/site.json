@@ -1,5 +1,6 @@
 {
     "title": "Cryptography Algorithms",
+    "url": "https://cryptography-algorithms.netlify.app",
     "description": "Implementations of various cryptography algorithms.",
     "keywords": ["cryptography", "ciphers", "codes"],
     "author": "Aleksandr Hovhannisyan"

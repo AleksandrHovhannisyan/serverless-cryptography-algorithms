@@ -1,6 +1,8 @@
 const { generateAtbashCipher } = require("./algorithms/atbashCipher");
 const generateCaesarCipher = require("./algorithms/caesarCipher");
 
+const toISOString = (dateString) => dateString.toISOString();
+
 const keylength = (obj) => Object.keys(obj).length;
 
 const toSentenceCase = (str) => {
@@ -37,6 +39,7 @@ const outputFilter = (query) => {
 };
 
 module.exports = {
+  toISOString,
   keylength,
   toSentenceCase,
   outputFilter,
