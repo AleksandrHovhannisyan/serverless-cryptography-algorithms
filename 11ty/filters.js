@@ -12,7 +12,8 @@ const outputFilter = (query) => {
     case "caesar": {
       const caesarShift = generateCaesarCipher(
         Number(query.shift),
-        query.alphabet.split("")
+        query.alphabet.split(""),
+        query.key
       );
       const transform = caesarShift[query.operation];
       return {
