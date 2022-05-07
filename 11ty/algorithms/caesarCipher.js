@@ -2,7 +2,7 @@ const generateCaesarCipher = (shift, plaintextAlphabet, key = "") => {
   // Example: HELLO => HELO
   const keyedAlphabet = new Set(key.toLowerCase().split(""));
 
-  // Example: If shift = 13 and key = HELLO, then we get helrstuvwxyzabcdfgijkmnpq
+  // Example: If shift = 13 and key = HELLO, we get mnpqrstuvwxyzheloabcdfgijk
   const cipherAlphabet = Array.from(keyedAlphabet)
     .concat(
       plaintextAlphabet
