@@ -32,7 +32,7 @@ const generateCaesarCipher = (shift, plaintextAlphabet) => {
       .join("");
   };
 
-  return { encipher, decipher };
+  return { cipherAlphabet, encipher, decipher };
 };
 
 module.exports = generateCaesarCipher;
