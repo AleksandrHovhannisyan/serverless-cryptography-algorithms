@@ -6,27 +6,40 @@ permalink:
     onrequest: /caesar
 ---
 
-<form method="get">
-    <label>Message <input name="message" type="text" minlength="0" required value="{{ eleventy.serverless.query.message | default: '' }}"></label>
-    <label>Caesar shift <input name="shift" type="number" value="{{ eleventy.serverless.query.shift | default: 13 }}" step="1" min="1" required></label>
-    <label>Plaintext alphabet <input name="alphabet" type="text" value="{{ eleventy.serverless.query.alphabet | default: alphabets.english }}" required></label>
-    <label>
-        Operation
-        <select name="operation">
-            <option value="encipher" {% if eleventy.serverless.query.operation == 'encipher' %}selected{% endif %}>Encipher</option>
-            <option value="decipher" {% if eleventy.serverless.query.operation == 'decipher' %}selected{% endif %}>Decipher</option>
-        </select>
-    </label>
-    <input hidden name="algorithm" type="text" value="caesar" />
-    <button type="reset">Reset</button>
-    <button type="submit">Submit</button>
-</form>
+<section>
+    <h2 id="input">Input</h2>
+    <form method="get">
+        <label>Message <input name="message" type="text" minlength="0" required value="{{ eleventy.serverless.query.message | default: '' }}"></label>
+        <label>Caesar shift <input name="shift" type="number" value="{{ eleventy.serverless.query.shift | default: 13 }}" step="1" min="1" required></label>
+        <label>Plaintext alphabet <input name="alphabet" type="text" value="{{ eleventy.serverless.query.alphabet | default: alphabets.english }}" required></label>
+        <label>
+            Operation
+            {% assign operations = "encipher,decipher" | split: "," %}
+            <select name="operation">
+                {% for operation in operations %}
+                    <option value="{{ operation }}" {% if eleventy.serverless.query.operation == operation %}selected{% endif %}>{{ operation | toSentenceCase }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <input hidden name="algorithm" type="text" value="caesar" />
+        <button type="reset">Reset</button>
+        <button type="submit">Submit</button>
+    </form>
+</section>
 {% assign queryLength = eleventy.serverless.query | keylength %}
 {% if queryLength > 0 %}
+    {% assign result = eleventy.serverless.query | output %}
     <section>
         <h2 id="output">Output</h2>
-        <output aria-labelledby="output">
-            {% output eleventy.serverless.query %}
-        </output>
+        <dl>
+            <div>
+                <dt>Cipher alphabet</dt>
+                <dd>{{ result.alphabet }}</dd>    
+            </div>
+            <div>
+                <dt>Message</dt>
+                <dd>{{ result.output }}</dd>
+            </div>
+        </dl>
     </section>
 {% endif %}

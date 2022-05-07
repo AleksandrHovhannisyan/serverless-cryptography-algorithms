@@ -7,13 +7,6 @@ publish = "_site/"
 command = "npm run build"
 
 [[redirects]]
-from = "/test"
-to = "/.netlify/functions/onrequest"
-status = 200
-force = true
-_generated_by_eleventy_serverless = "onrequest"
-
-[[redirects]]
 from = "/caesar"
 to = "/.netlify/functions/onrequest"
 status = 200

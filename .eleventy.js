@@ -1,9 +1,10 @@
 const { EleventyServerlessBundlerPlugin } = require("@11ty/eleventy");
-const { outputShortcode } = require("./11ty/shortcodes");
+const { outputFilter, keylength, toSentenceCase } = require("./11ty/filters");
 
 module.exports = (eleventyConfig) => {
-  eleventyConfig.addShortcode('output', outputShortcode);
-  eleventyConfig.addFilter('keylength', (obj) => Object.keys(obj).length);
+  eleventyConfig.addFilter('output', outputFilter);
+  eleventyConfig.addFilter('keylength', keylength);
+  eleventyConfig.addFilter('toSentenceCase', toSentenceCase);
   
   eleventyConfig.addPlugin(EleventyServerlessBundlerPlugin, {
     name: "onrequest",

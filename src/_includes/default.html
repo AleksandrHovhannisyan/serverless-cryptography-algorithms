@@ -41,19 +41,29 @@
             width: fit-content;
         }
         form {
-            margin-block: 2.5rem;
+            /* margin-block: 2.5rem; */
         }
         code,
         output {
             background-color: var(--color-surface-1);
         }
-        output {
-            user-select: all;
-            display: block;
-            padding: 2rem;
-            text-align: center;
-            border-radius: 2px;
-            border: solid 1px hsl(0, 0%, 60%);
+        section {
+            margin-block: 3rem;
+        }
+        dl {
+            display: grid;
+            gap: 1rem;
+        }
+        dt {
+            font-weight: 700;
+        }
+        dt::after {
+            content: ": ";
+        }
+        dt,
+        dd {
+            margin: 0;
+            display: inline-block;
         }
     </style>
 </head>
