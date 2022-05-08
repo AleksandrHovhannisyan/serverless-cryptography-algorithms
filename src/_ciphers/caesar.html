@@ -37,7 +37,7 @@ permalink:
                 <dd>{{ result.alphabet }}</dd>    
             </div>
             <div>
-                <dt>Message</dt>
+                <dt>{{ eleventy.serverless.query.message | escape }}</dt>
                 <dd>{{ result.message }}</dd>
             </div>
         </dl>
