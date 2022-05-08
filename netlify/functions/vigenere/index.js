@@ -1,5 +1,5 @@
 const { EleventyServerless } = require("@11ty/eleventy");
-const { validateQueryParams } = require("../../../11ty/utils.js");
+const { throwIf, validateQueryParams } = require("../../../11ty/utils.js");
 require("./eleventy-bundler-modules.js");
 
 const queryParamConfig = {
