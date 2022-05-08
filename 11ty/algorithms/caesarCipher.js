@@ -1,3 +1,5 @@
+const { shiftArray } = require("../utils");
+
 const generateCaesarCipher = (shift, plaintextAlphabet, key = "") => {
   // Example: HELLO => HELO
   const uniqueKeySymbols = new Set(key.toLowerCase().split(""));
@@ -8,13 +10,10 @@ const generateCaesarCipher = (shift, plaintextAlphabet, key = "") => {
   );
 
   // Example: If shift = 13 and key = HELLO, we get mnpqrstuvwxyzheloabcdfgijk
-  const cipherAlphabet = Array.from(uniqueKeySymbols)
-    .concat(unusedAlphabetSymbols)
-    // Shift the keyed alphabet to the right
-    .map((_symbol, index, alphabet) => {
-      const newIndex = (index + shift) % alphabet.length;
-      return alphabet[newIndex].toLowerCase();
-    });
+  const cipherAlphabet = shiftArray(
+    Array.from(uniqueKeySymbols).concat(unusedAlphabetSymbols),
+    shift
+  );
 
   const makeTranslator = (sourceAlphabet, targetAlphabet) => (message) => {
     return message
