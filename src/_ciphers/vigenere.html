@@ -1,0 +1,66 @@
+---
+id: vigenere
+title: Vigenère Cipher
+description: A polyalphabetic substitution cipher that generates an nxn square of Caesar ciphers. Each symbol in the plaintext message is enciphered using a different Caesar cipher alphabet to throw off frequency analysis. Which alphabet is chosen is determined by a key/passphrase.
+infoUrl: https://en.wikipedia.org/wiki/Caesar_cipher 
+permalink:
+    onrequest: /vigenere/
+---
+
+<section>
+    <h2 id="input">Input</h2>
+    <form method="get" id="form">
+        <label>Message <textarea name="message" minlength="0" required>{{ eleventy.serverless.query.message | default: '' }}</textarea></label>
+        <label>Key <input name="key" type="text" value="{{ eleventy.serverless.query.key | default: '' }}"></label>
+        <label>Plaintext alphabet <input name="alphabet" type="text" value="{{ eleventy.serverless.query.alphabet | default: alphabets.english }}" required></label>
+        <label>
+            Operation
+            {% assign operations = "encipher,decipher" | split: "," %}
+            <select name="operation">
+                {% for operation in operations %}
+                    <option value="{{ operation }}" {% if eleventy.serverless.query.operation == operation %}selected{% endif %}>{{ operation | toSentenceCase }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <button type="submit">Submit</button>
+    </form>
+</section>
+{% assign queryLength = eleventy.serverless.query | keylength %}
+{% if queryLength > 0 %}
+    {% assign result = eleventy.serverless.query | output %}
+    <section>
+        <h2 id="output">Output</h2>
+        <dl>
+            <div>
+                <dt>{{ eleventy.serverless.query.message | escape }}</dt>
+                <dd>{{ result.message | escape }}</dd>    
+            </div>
+        </dl>
+        <div class="table-wrapper">
+            <table>
+                <caption>Vigenère square</caption>
+                <thead>
+                    <tr>
+                        <th></th>
+                        {%- assign plaintextAlphabet = eleventy.serverless.query.alphabet | split: '' -%}
+                        {% for symbol in plaintextAlphabet %}
+                            <th scope="col">{{ symbol | escape }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {%- assign n = result.square | size | minus: 1 -%}
+                    {% for i in (0..n) %}
+                        <tr>
+                            <td>{{ i }}</td>
+                            {%- assign row = result.square[i] -%}
+                            {% for symbol in row.cipherAlphabet %}
+                                <td>{{ symbol | escape }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endif %}

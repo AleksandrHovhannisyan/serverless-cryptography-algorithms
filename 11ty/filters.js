@@ -1,5 +1,6 @@
 const { generateAtbashCipher } = require("./algorithms/atbashCipher");
 const generateCaesarCipher = require("./algorithms/caesarCipher");
+const { generateVigenereCipher } = require("./algorithms/vigenereCipher");
 
 const toISOString = (dateString) => dateString.toISOString();
 
@@ -11,6 +12,7 @@ const toSentenceCase = (str) => {
 };
 
 const outputFilter = (query) => {
+  const message = query.message.replace(/[\s\.,\?\!\:;&@#\$\*\+]/g, '');
   switch (query.algorithm) {
     case "caesar": {
       const algorithm = generateCaesarCipher(
@@ -21,7 +23,7 @@ const outputFilter = (query) => {
       const transform = algorithm[query.operation];
       return {
         alphabet: algorithm.cipherAlphabet,
-        output: transform(query.message),
+        message: transform(message),
       };
     }
     case "atbash": {
@@ -29,7 +31,15 @@ const outputFilter = (query) => {
       const transform = algorithm[query.operation];
       return {
         alphabet: algorithm.cipherAlphabet,
-        output: transform(query.message),
+        message: transform(message),
+      };
+    }
+    case "vigenere": {
+      const algorithm = generateVigenereCipher(query.alphabet.split(""), query.key);
+      const transform = algorithm[query.operation];
+      return {
+        square: algorithm.square,
+        message: transform(message),
       };
     }
     default: {
