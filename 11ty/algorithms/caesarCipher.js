@@ -1,5 +1,10 @@
 const { shiftArray } = require("../utils");
 
+/**
+ * @param {number} shift The rightward shift to apply to the keyed alphabet.
+ * @param {string[]} plaintextAlphabet The plaintext alphabet that exhaustively lists all symbols that may or may not be used in a plaintext message.
+ * @param {string} key A key with which to seed the cipher alphabet, introducing noise.
+ */
 const generateCaesarCipher = (shift, plaintextAlphabet, key = "") => {
   // Example: HELLO => HELO
   const uniqueKeySymbols = new Set(key.toLowerCase().split(""));
