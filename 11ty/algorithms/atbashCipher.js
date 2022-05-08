@@ -7,7 +7,7 @@ const generateAtbashCipher = (plaintextAlphabet) => {
     .reverse();
 
   const encipher = (message) => {
-    const symbols = message.split("").toLowerCase();
+    const symbols = message.toLowerCase().split("");
     return symbols
       .map((symbol) => {
         const index = plaintextAlphabet.indexOf(symbol);
@@ -17,7 +17,7 @@ const generateAtbashCipher = (plaintextAlphabet) => {
   };
 
   const decipher = (message) => {
-    const symbols = message.split("").toLowerCase();
+    const symbols = message.toLowerCase().split("");
     return symbols
       .map((symbol) => {
         const index = cipherAlphabet.indexOf(symbol);
