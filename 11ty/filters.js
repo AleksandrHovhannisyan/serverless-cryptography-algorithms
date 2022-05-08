@@ -1,3 +1,4 @@
+const CleanCSS = require('clean-css');
 const { generateAtbashCipher } = require("./algorithms/atbashCipher");
 const generateCaesarCipher = require("./algorithms/caesarCipher");
 const { generateVigenereCipher } = require("./algorithms/vigenereCipher");
@@ -10,6 +11,8 @@ const toSentenceCase = (str) => {
   const [first, ...rest] = str.split("");
   return `${first.toUpperCase()}${rest.join("")}`;
 };
+
+const cssminify = (css) => new CleanCSS({}).minify(css).styles;
 
 const outputFilter = (query) => {
   const message = query.message.replace(/[\s\.,\?\!\:;&@#\$\*\+]/g, '');
@@ -49,6 +52,7 @@ const outputFilter = (query) => {
 };
 
 module.exports = {
+  cssminify,
   toISOString,
   keylength,
   toSentenceCase,
