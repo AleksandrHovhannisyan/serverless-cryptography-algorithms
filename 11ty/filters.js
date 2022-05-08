@@ -5,7 +5,7 @@ const { generateVigenereCipher } = require("./algorithms/vigenereCipher");
 
 const toISOString = (dateString) => dateString.toISOString();
 
-const keylength = (obj) => Object.keys(obj).length;
+const keylength = (obj) => Object.keys(obj ?? {}).length;
 
 const toSentenceCase = (str) => {
   const [first, ...rest] = str.split("");
@@ -14,9 +14,15 @@ const toSentenceCase = (str) => {
 
 const cssminify = (css) => new CleanCSS({}).minify(css).styles;
 
-const outputFilter = (query) => {
+/**
+ * Returns the result of interpreting the query parameters under a specific cryptography algorithm.
+ * @param {Record<string, string>} query URL query parameters supplied by the user. 
+ * @param {string} algorithm A unique string identifying the algorithm to be used.
+ * @returns 
+ */
+const makeCipherFilter = (query, algorithm) => {
   const message = query.message.replace(/[\s\.,\?\!\:;&@#\$\*\+]/g, '');
-  switch (query.algorithm) {
+  switch (algorithm) {
     case "caesar": {
       const algorithm = generateCaesarCipher(
         Number(query.shift),
@@ -46,7 +52,7 @@ const outputFilter = (query) => {
       };
     }
     default: {
-      return;
+      throw new Error("Unrecognized algorithm");
     }
   }
 };
@@ -56,5 +62,5 @@ module.exports = {
   toISOString,
   keylength,
   toSentenceCase,
-  outputFilter,
+  makeCipherFilter,
 };

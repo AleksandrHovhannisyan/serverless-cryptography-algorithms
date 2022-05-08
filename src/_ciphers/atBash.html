@@ -4,12 +4,13 @@ title: Atbash Cipher
 description: A naive monoalphabetic substitution cipher that simply reverses the plaintext alphabet.
 infoUrl: https://en.wikipedia.org/wiki/Atbash
 permalink:
-    onrequest: /atbash/
+    build: /atbash/
+    onrequest: /atbash/output/
 ---
 
 <section>
     <h2 id="input">Input</h2>
-    <form method="get" id="form">
+    <form action="{{ permalink.onrequest }}"  method="get">
         <label>Message <textarea name="message" minlength="0" required>{{ eleventy.serverless.query.message | default: '' }}</textarea></label>
         <label>Plaintext alphabet <input name="alphabet" type="text" value="{{ eleventy.serverless.query.alphabet | default: alphabets.english }}" required></label>
         <label>
@@ -26,7 +27,7 @@ permalink:
 </section>
 {% assign queryLength = eleventy.serverless.query | keylength %}
 {% if queryLength > 0 %}
-    {% assign result = eleventy.serverless.query | output %}
+    {% assign result = eleventy.serverless.query | makeCipher: id %}
     <section>
         <h2 id="output">Output</h2>
         <dl>

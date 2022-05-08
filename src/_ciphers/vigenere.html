@@ -4,12 +4,13 @@ title: Vigenère Cipher
 description: A polyalphabetic substitution cipher that generates an nxn square of Caesar ciphers. Each symbol in the plaintext message is enciphered using a different Caesar cipher alphabet to throw off frequency analysis. Which alphabet is chosen is determined by a key/passphrase.
 infoUrl: https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher
 permalink:
-    onrequest: /vigenere/
+    build: /vigenere/
+    onrequest: /vigenere/output/
 ---
 
 <section>
     <h2 id="input">Input</h2>
-    <form method="get" id="form">
+    <form action="{{ permalink.onrequest }}" method="get">
         <label>Message <textarea name="message" minlength="0" required>{{ eleventy.serverless.query.message | default: '' }}</textarea></label>
         <label>Key <input name="key" type="text" required value="{{ eleventy.serverless.query.key | default: '' }}"></label>
         <label>Plaintext alphabet <input name="alphabet" type="text" value="{{ eleventy.serverless.query.alphabet | default: alphabets.english }}" required></label>
@@ -27,7 +28,7 @@ permalink:
 </section>
 {% assign queryLength = eleventy.serverless.query | keylength %}
 {% if queryLength > 0 %}
-    {% assign result = eleventy.serverless.query | output %}
+    {% assign result = eleventy.serverless.query | makeCipher: id %}
     <section>
         <h2 id="output">Output</h2>
         <dl>

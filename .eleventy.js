@@ -1,12 +1,12 @@
 const { EleventyServerlessBundlerPlugin } = require("@11ty/eleventy");
-const { outputFilter, keylength, toSentenceCase, toISOString, cssminify } = require("./11ty/filters");
+const { keylength, toSentenceCase, toISOString, cssminify, makeCipherFilter } = require("./11ty/filters");
 
 module.exports = (eleventyConfig) => {
   eleventyConfig.addFilter('cssminify', cssminify);
   eleventyConfig.addFilter('toIsoString', toISOString);
   eleventyConfig.addFilter('keylength', keylength);
   eleventyConfig.addFilter('toSentenceCase', toSentenceCase);
-  eleventyConfig.addFilter('output', outputFilter);
+  eleventyConfig.addFilter('makeCipher', makeCipherFilter);
   
   eleventyConfig.addPlugin(EleventyServerlessBundlerPlugin, {
     name: "onrequest",

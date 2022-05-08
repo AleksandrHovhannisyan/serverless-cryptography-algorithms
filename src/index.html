@@ -9,7 +9,7 @@ permalink: /
   <ul>
     {% for algorithm in collections.algorithms %}
     <li>
-      <a href="{{ algorithm.data.permalink.onrequest }}">{{ algorithm.data.title }}</a>
+      <a href="{{ algorithm.data.permalink.build }}">{{ algorithm.data.title }}</a>
     </li>
     {% endfor %}
   </ul>

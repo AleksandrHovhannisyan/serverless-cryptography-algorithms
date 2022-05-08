@@ -7,21 +7,21 @@ publish = "_site/"
 command = "npm run build"
 
 [[redirects]]
-from = "/vigenere/"
+from = "/vigenere/output/"
 to = "/.netlify/functions/onrequest"
 status = 200
 force = true
 _generated_by_eleventy_serverless = "onrequest"
 
 [[redirects]]
-from = "/caesar/"
+from = "/caesar/output/"
 to = "/.netlify/functions/onrequest"
 status = 200
 force = true
 _generated_by_eleventy_serverless = "onrequest"
 
 [[redirects]]
-from = "/atbash/"
+from = "/atbash/output/"
 to = "/.netlify/functions/onrequest"
 status = 200
 force = true
