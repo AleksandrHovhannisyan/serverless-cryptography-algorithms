@@ -32,7 +32,7 @@ const makeCipherFilter = (query, algorithm) => {
       const transform = algorithm[query.operation];
       return {
         alphabet: algorithm.cipherAlphabet,
-        message: transform(message),
+        message: transform?.(message),
       };
     }
     case "atbash": {
@@ -40,7 +40,7 @@ const makeCipherFilter = (query, algorithm) => {
       const transform = algorithm[query.operation];
       return {
         alphabet: algorithm.cipherAlphabet,
-        message: transform(message),
+        message: transform?.(message),
       };
     }
     case "vigenere": {
@@ -48,7 +48,7 @@ const makeCipherFilter = (query, algorithm) => {
       const transform = algorithm[query.operation];
       return {
         square: algorithm.square,
-        message: transform(message),
+        message: transform?.(message),
       };
     }
     default: {

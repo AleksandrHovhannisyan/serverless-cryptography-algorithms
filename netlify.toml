@@ -8,21 +8,21 @@ command = "npm run build"
 
 [[redirects]]
 from = "/vigenere/output/"
-to = "/.netlify/functions/onrequest"
+to = "/.netlify/functions/vigenere"
 status = 200
 force = true
-_generated_by_eleventy_serverless = "onrequest"
+_generated_by_eleventy_serverless = "vigenere"
 
 [[redirects]]
 from = "/caesar/output/"
-to = "/.netlify/functions/onrequest"
+to = "/.netlify/functions/caesar"
 status = 200
 force = true
-_generated_by_eleventy_serverless = "onrequest"
+_generated_by_eleventy_serverless = "caesar"
 
 [[redirects]]
 from = "/atbash/output/"
-to = "/.netlify/functions/onrequest"
+to = "/.netlify/functions/atbash"
 status = 200
 force = true
-_generated_by_eleventy_serverless = "onrequest"
+_generated_by_eleventy_serverless = "atbash"

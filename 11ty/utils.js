@@ -6,6 +6,27 @@ const shiftArray = (array, shift) => {
   });
 };
 
+const throwIf = (condition, message) => {
+  if (condition) {
+    throw new Error(message);
+  }
+}
+
+/**
+ * Validates query params according to the supplied config.
+ * @param {Record<string, string>} query User-supplied query params.
+ * @param {Record<string, string>} queryParamConfig A config with validator functions for each param.
+ */
+const validateQueryParams = (query, queryParamConfig) => {
+  Object.keys(queryParamConfig).forEach((paramName) => {
+    const userSuppliedValue = query[paramName];
+    const config = queryParamConfig[paramName];
+    config.validate(userSuppliedValue);
+  });
+}
+
 module.exports = {
   shiftArray,
+  throwIf,
+  validateQueryParams,
 };

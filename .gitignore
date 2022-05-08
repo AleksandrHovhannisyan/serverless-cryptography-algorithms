@@ -2,5 +2,9 @@ node_modules/
 _site/
 .env
 .netlify
-netlify/functions/onrequest/**
-!netlify/functions/onrequest/index.js
+netlify/functions/atbash/**
+!netlify/functions/atbash/index.js
+netlify/functions/caesar/**
+!netlify/functions/caesar/index.js
+netlify/functions/vigenere/**
+!netlify/functions/vigenere/index.js
