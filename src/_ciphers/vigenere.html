@@ -11,7 +11,7 @@ permalink:
     <h2 id="input">Input</h2>
     <form method="get" id="form">
         <label>Message <textarea name="message" minlength="0" required>{{ eleventy.serverless.query.message | default: '' }}</textarea></label>
-        <label>Key <input name="key" type="text" value="{{ eleventy.serverless.query.key | default: '' }}"></label>
+        <label>Key <input name="key" type="text" required value="{{ eleventy.serverless.query.key | default: '' }}"></label>
         <label>Plaintext alphabet <input name="alphabet" type="text" value="{{ eleventy.serverless.query.alphabet | default: alphabets.english }}" required></label>
         <label>
             Operation
