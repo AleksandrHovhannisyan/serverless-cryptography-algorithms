@@ -6,27 +6,17 @@ const shiftArray = (array, shift) => {
   });
 };
 
+/** Throws the given error message if the condition is true.
+ * @param {boolean} condition The condition to test.
+ * @param {string} message The error message to throw.
+ */
 const throwIf = (condition, message) => {
   if (condition) {
     throw new Error(message);
   }
 }
 
-/**
- * Validates query params according to the supplied config.
- * @param {Record<string, string>} query User-supplied query params.
- * @param {Record<string, string>} queryParamConfig A config with validator functions for each param.
- */
-const validateQueryParams = (query, queryParamConfig) => {
-  Object.keys(queryParamConfig).forEach((paramName) => {
-    const userSuppliedValue = query[paramName];
-    const config = queryParamConfig[paramName];
-    config.validate(userSuppliedValue);
-  });
-}
-
 module.exports = {
   shiftArray,
   throwIf,
-  validateQueryParams,
 };

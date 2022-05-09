@@ -1,4 +1,4 @@
-const CleanCSS = require('clean-css');
+const CleanCSS = require("clean-css");
 const { generateAtbashCipher } = require("./algorithms/atbashCipher");
 const generateCaesarCipher = require("./algorithms/caesarCipher");
 const { generateVigenereCipher } = require("./algorithms/vigenereCipher");
@@ -16,39 +16,38 @@ const cssminify = (css) => new CleanCSS({}).minify(css).styles;
 
 /**
  * Returns the result of interpreting the query parameters under a specific cryptography algorithm.
- * @param {Record<string, string>} query URL query parameters supplied by the user. 
+ * @param {Record<string, string>} query URL query parameters supplied by the user.
  * @param {string} algorithm A unique string identifying the algorithm to be used.
- * @returns 
+ * @returns
  */
 const makeCipherFilter = (query, algorithm) => {
-  const message = query.message.replace(/[\s\.,\?\!\:;&@#\$\*\+]/g, '');
   switch (algorithm) {
     case "caesar": {
       const algorithm = generateCaesarCipher(
-        Number(query.shift),
-        query.alphabet.split(""),
+        query.shift,
+        query.alphabet,
         query.key
       );
-      const transform = algorithm[query.operation];
+      const operation = algorithm[query.operation];
       return {
         alphabet: algorithm.cipherAlphabet,
-        message: transform?.(message),
+        message: operation?.(query.message),
       };
     }
     case "atbash": {
-      const algorithm = generateAtbashCipher(query.alphabet.split(""));
-      const transform = algorithm[query.operation];
+      const algorithm = generateAtbashCipher(query.alphabet);
+      const operation = algorithm[query.operation];
       return {
         alphabet: algorithm.cipherAlphabet,
-        message: transform?.(message),
+        message: operation?.(query.message),
       };
     }
     case "vigenere": {
-      const algorithm = generateVigenereCipher(query.alphabet.split(""), query.key);
-      const transform = algorithm[query.operation];
+      const algorithm = generateVigenereCipher(query.alphabet, query.key);
+      const operation = algorithm[query.operation];
       return {
         square: algorithm.square,
-        message: transform?.(message),
+        message: operation?.(query.message),
       };
     }
     default: {
