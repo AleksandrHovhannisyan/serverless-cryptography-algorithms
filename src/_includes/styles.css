@@ -15,10 +15,11 @@ body {
     font-size: 125%;
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    overflow-wrap: break-word;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 main {
     flex: 1;
@@ -70,7 +71,7 @@ dl {
 dt {
     font-weight: 700;
 }
-dt::after {
+:is(dt,caption)::after {
     content: ": ";
 }
 dt,
@@ -88,7 +89,8 @@ table {
     margin-block: 1rem;
 }
 caption {
-    font-style: italic;
+    font-weight: 700;
+    font-style: normal;
     text-align: start;
 }
 .table-wrapper {
