@@ -3,6 +3,7 @@
 }
 html {
     --color-surface-1: hsl(0, 0%, 95%);
+    --color-surface-2: hsl(0, 0%, 88%);
 }
 html,
 body {
@@ -86,7 +87,6 @@ dd {
 table {
     border-collapse: collapse;
     max-width: 100%;
-    margin-block: 1rem;
 }
 caption {
     font-weight: 700;
@@ -99,4 +99,7 @@ caption {
 td,
 th {
     padding: 0.125rem;
+}
+.active-vigenere-alphabet {
+    background-color: var(--color-surface-2);
 }

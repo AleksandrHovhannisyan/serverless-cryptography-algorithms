@@ -46,10 +46,12 @@ permalink:
                 </thead>
                 <tbody>
                     {%- assign n = result.square | size | minus: 1 -%}
+                    {%- assign keySymbols = eleventy.serverless.query.key | split: '' -%}
                     {% for i in (0..n) %}
-                        <tr>
+                        {%- assign row = result.square[i] -%}
+                        {%- assign firstSymbol = row.cipherAlphabet[0] -%}
+                        <tr {% if keySymbols contains firstSymbol %}class="active-vigenere-alphabet"{% endif %}>
                             <td>{{ i }}</td>
-                            {%- assign row = result.square[i] -%}
                             {% for symbol in row.cipherAlphabet %}
                                 <td>{{ symbol | escape }}</td>
                             {% endfor %}
