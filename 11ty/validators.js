@@ -14,7 +14,7 @@ const throwIfInvalidCipherOperation = (value) => throwIf(!['encipher', 'decipher
   Object.keys(queryParamConfig).forEach((paramName) => {
     const userSuppliedValue = query[paramName];
     const config = queryParamConfig[paramName];
-    config.validate(userSuppliedValue);
+    config.validate?.(userSuppliedValue);
   });
 }
 

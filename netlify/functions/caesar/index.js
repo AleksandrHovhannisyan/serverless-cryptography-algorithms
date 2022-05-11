@@ -18,6 +18,9 @@ const queryParamConfig = {
       throwIfMissing(value, "message");
     },
   },
+  key: {
+    transform: transformString,
+  },
   alphabet: {
     transform: transformAlphabet,
     validate: (value) => {
