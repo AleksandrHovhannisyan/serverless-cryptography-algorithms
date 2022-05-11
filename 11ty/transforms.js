@@ -3,7 +3,7 @@
  * @param {string} string
  */
 const transformString = (string) => {
-  return string.replace(/[\s\.,'"\?\!\:;&@#\$\*\+\(\)\{\}\[\]\u2013\u2014\-\^\/]/g, "");
+  return string.toLowerCase().replace(/[\s\.,'"\?\!\:;&@#\$\*\+\(\)\{\}\[\]\u2013\u2014\-\^\/]/g, "");
 };
 
 /**
