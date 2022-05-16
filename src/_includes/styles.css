@@ -72,13 +72,10 @@ dl {
 dt {
     font-weight: 700;
 }
-:is(dt,caption)::after {
-    content: ": ";
-}
 dt,
 dd {
     margin: 0;
-    display: inline-block;
+    display: block;
 }
 .navbar,
 .page-footer {
@@ -90,16 +87,23 @@ table {
 }
 caption {
     font-weight: 700;
-    font-style: normal;
     text-align: start;
+    margin-bottom: 0.5rem;
 }
 .table-wrapper {
     overflow-x: auto;
 }
+th {
+    font-weight: 700;
+    background-color: var(--color-surface-1);
+}
 td,
 th {
-    padding: 0.125rem;
+    border: solid 0.8px;
+    text-align: start;
+    white-space: nowrap;
+    padding: 6px;
 }
 .active-vigenere-alphabet {
-    background-color: var(--color-surface-2);
+    background-color: var(--color-surface-1);
 }
