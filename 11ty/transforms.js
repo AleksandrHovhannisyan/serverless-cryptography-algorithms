@@ -1,10 +1,9 @@
+const { removePunctuation, removeWhitespace } = require("./utils");
+
 /**
- * Returns the given string without whitespace/punctuation.
  * @param {string} string
  */
-const transformString = (string) => {
-  return string.toLowerCase().replace(/[\s\.,'"\?\!\:;&@#\$\*\+\(\)\{\}\[\]\u2013\u2014\-\^\/]/g, "");
-};
+const transformString = (string) => removePunctuation(removeWhitespace(string.toLowerCase()));
 
 /**
  * @param {string} alphabet
