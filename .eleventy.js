@@ -9,6 +9,7 @@ const {
 const { formShortcode, outputShortcode } = require("./11ty/shortcodes");
 
 module.exports = (eleventyConfig) => {
+  eleventyConfig.addFilter("keys", Object.keys);
   eleventyConfig.addFilter("cssminify", cssminify);
   eleventyConfig.addFilter("toIsoString", toISOString);
   eleventyConfig.addFilter("keylength", keylength);
@@ -24,9 +25,11 @@ module.exports = (eleventyConfig) => {
     });
   };
 
+  // Ciphers
   createServerlessRoute("atbash");
   createServerlessRoute("caesar");
   createServerlessRoute("vigenere");
+  createServerlessRoute("book");
 
   return {
     dir: {

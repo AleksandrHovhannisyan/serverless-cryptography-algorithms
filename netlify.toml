@@ -7,6 +7,13 @@ publish = "_site/"
 command = "npm run build"
 
 [[redirects]]
+from = "/ciphers/book/output/"
+to = "/.netlify/functions/book"
+status = 200
+force = true
+_generated_by_eleventy_serverless = "book"
+
+[[redirects]]
 from = "/vigenere/output/"
 to = "/.netlify/functions/vigenere"
 status = 200

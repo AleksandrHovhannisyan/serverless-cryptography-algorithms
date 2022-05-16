@@ -1,7 +1,10 @@
 const CleanCSS = require("clean-css");
-const { generateAtbashCipher } = require("./algorithms/atbashCipher");
-const generateCaesarCipher = require("./algorithms/caesarCipher");
-const { generateVigenereCipher } = require("./algorithms/vigenereCipher");
+const {
+  generateCaesarCipher,
+  generateAtbashCipher,
+  generateVigenereCipher,
+  generateBookCipher,
+} = require("./algorithms");
 
 const toISOString = (dateString) => dateString.toISOString();
 
@@ -47,6 +50,17 @@ const makeCipherFilter = (query, algorithm) => {
       const operation = algorithm[query.operation];
       return {
         square: algorithm.square,
+        message: operation?.(query.message),
+      };
+    }
+    case "book": {
+      const algorithm = generateBookCipher(query.bookText);
+      const operation = algorithm[query.operation];
+      return {
+        alphabet:
+          query.operation === "encipher"
+            ? algorithm.alphabets.cipher
+            : algorithm.alphabets.plain,
         message: operation?.(query.message),
       };
     }

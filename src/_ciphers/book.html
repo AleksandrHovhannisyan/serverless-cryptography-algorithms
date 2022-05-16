@@ -1,0 +1,60 @@
+---
+id: book
+title: Book Cipher
+description: A homophonic substitution cipher that maps each symbol in the plaintext to one or more numbers. This is done by taking a sample of text, numbering each word in the text, and mapping the first letter of each word to its corresponding number. A given plaintext symbol is then enciphered by randomly substituting it with one of its candidate numbers. A sufficiently large sample text should be chosen so that every symbol of the plaintext appears at the start of a word. Otherwise, it will be enciphered as-is.
+infoUrl: https://en.wikipedia.org/wiki/Book_cipher 
+permalink:
+    build: /book/
+    book: /book/output/
+---
+{%- capture defaultBookText -%}
+According to all known laws of aviation, there is no way a bee should be able to fly.
+Its wings are too small to get its fat little body off the ground.
+The bee, of course, flies anyway because bees don't care what humans think is impossible.
+{%- endcapture -%}
+{% form %}
+    <label>Book text <textarea name="bookText" minlength="0" required>{{ eleventy.serverless.query.bookText | default: defaultBookText }}</textarea></label>
+    <label>Message <textarea name="message" minlength="0" required>{{ eleventy.serverless.query.message | default: '' }}</textarea></label>
+    <label>
+        Operation
+        {% assign operations = "encipher,decipher" | split: "," %}
+        <select name="operation">
+            {% for operation in operations %}
+                <option value="{{ operation }}" {% if eleventy.serverless.query.operation == operation %}selected{% endif %}>{{ operation | toSentenceCase }}</option>
+            {% endfor %}
+        </select>
+    </label>
+{% endform %}
+{% assign queryLength = eleventy.serverless.query | keylength %}
+{% if queryLength > 0 %}
+    {% assign result = eleventy.serverless.query | makeCipher: id %}
+    {% output %}
+        <dl>
+            <div>
+                <dt>Message</dt>
+                <dd>{{ result.message }}</dd>
+            </div>
+        </dl>
+        <div class="table-wrapper">
+            <table>
+                <caption>Alphabet</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Symbol</th>
+                        <th scope="col">Substitution candidates</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%- assign alphabetKeys = result.alphabet | keys | sort -%}
+                    {% for symbol in alphabetKeys %}
+                        {% assign candidates = result.alphabet[symbol] %}
+                        <tr>
+                            <td>{{ symbol }}</td>
+                            <td>{{ candidates | join: ', ' }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endoutput %}
+{% endif %}

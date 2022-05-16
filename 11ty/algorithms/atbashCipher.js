@@ -29,4 +29,4 @@ const generateAtbashCipher = (plaintextAlphabet) => {
   return { cipherAlphabet, encipher, decipher };
 };
 
-module.exports = { generateAtbashCipher };
+module.exports = generateAtbashCipher;

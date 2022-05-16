@@ -8,3 +8,5 @@ netlify/functions/caesar/**
 !netlify/functions/caesar/index.js
 netlify/functions/vigenere/**
 !netlify/functions/vigenere/index.js
+netlify/functions/book/**
+!netlify/functions/book/index.js

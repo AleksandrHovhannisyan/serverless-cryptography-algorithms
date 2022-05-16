@@ -40,6 +40,4 @@ const generateVigenereCipher = (plaintextAlphabet, key) => {
   };
 };
 
-module.exports = {
-  generateVigenereCipher,
-};
+module.exports = generateVigenereCipher;
