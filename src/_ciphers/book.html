@@ -3,9 +3,6 @@ id: book
 title: Book Cipher
 description: A homophonic substitution cipher that maps each symbol in the plaintext to one or more numbers. This is done by taking a sample of text, numbering each word in the text, and mapping the first letter of each word to its corresponding number. A given plaintext symbol is then enciphered by randomly substituting it with one of its candidate numbers. A sufficiently large sample text should be chosen so that every symbol of the plaintext appears at the start of a word. Otherwise, it will be enciphered as-is.
 infoUrl: https://en.wikipedia.org/wiki/Book_cipher 
-permalink:
-    build: /book/
-    book: /book/output/
 ---
 {%- capture defaultBookText -%}
 According to all known laws of aviation, there is no way a bee should be able to fly.

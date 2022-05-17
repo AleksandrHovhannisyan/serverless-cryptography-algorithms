@@ -14,22 +14,46 @@ force = true
 _generated_by_eleventy_serverless = "book"
 
 [[redirects]]
-from = "/vigenere/output/"
+from = "/ciphers/vigenere/output/"
 to = "/.netlify/functions/vigenere"
 status = 200
 force = true
 _generated_by_eleventy_serverless = "vigenere"
 
 [[redirects]]
-from = "/caesar/output/"
+from = "/ciphers/caesar/output/"
 to = "/.netlify/functions/caesar"
 status = 200
 force = true
 _generated_by_eleventy_serverless = "caesar"
 
 [[redirects]]
-from = "/atbash/output/"
+from = "/ciphers/atbash/output/"
 to = "/.netlify/functions/atbash"
 status = 200
 force = true
 _generated_by_eleventy_serverless = "atbash"
+
+[[redirects]]
+from = "/book"
+to = "/ciphers/book"
+status = 301
+force = true
+
+[[redirects]]
+from = "/atbash"
+to = "/ciphers/atbash"
+status = 301
+force = true
+
+[[redirects]]
+from = "/caesar"
+to = "/ciphers/caesar"
+status = 301
+force = true
+
+[[redirects]]
+from = "/vigenere"
+to = "/ciphers/vigenere"
+status = 301
+force = true
