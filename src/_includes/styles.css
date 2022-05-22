@@ -13,8 +13,8 @@ body {
     max-width: 40rem;
     padding: 0 1rem;
     margin: 0 auto;
-    font-size: 125%;
-    font-family: Arial, sans-serif;
+    font-size: 130%;
+    font-family: monospace;
     line-height: 1.6;
     display: flex;
     flex-direction: column;
