@@ -1,4 +1,5 @@
-const { shiftArray } = require('../utils');
+const { normalizeString } = require('../../transforms');
+const { rotate } = require('../../utils');
 
 /**
  * @param {number} shift The rightward shift to apply to the keyed alphabet.
@@ -6,18 +7,22 @@ const { shiftArray } = require('../utils');
  * @param {string} key A key with which to seed the cipher alphabet, introducing noise.
  */
 const generateCaesarCipher = (shift, plaintextAlphabet, key = '') => {
+  key = normalizeString(key);
+
   // Example: HELLO => HELO
-  const uniqueKeySymbols = new Set(key.toLowerCase().split(''));
+  const uniqueKeySymbols = new Set(key.split(''));
 
   // Example: abcdfgijkmnpqrstuvwxyz
-  const unusedAlphabetSymbols = plaintextAlphabet.filter((symbol) => !uniqueKeySymbols.has(symbol));
+  const unusedAlphabetSymbols = plaintextAlphabet
+    .filter((symbol) => !uniqueKeySymbols.has(symbol))
+    // Lowercase the alphabet symbols in case the user uppercased them
+    .map((symbol) => symbol.toLowerCase());
 
   // Example: If shift = 13 and key = HELLO, we get mnpqrstuvwxyzheloabcdfgijk
-  const cipherAlphabet = shiftArray(Array.from(uniqueKeySymbols).concat(unusedAlphabetSymbols), shift);
+  const cipherAlphabet = rotate(Array.from(uniqueKeySymbols).concat(unusedAlphabetSymbols), shift);
 
   const makeTranslator = (sourceAlphabet, targetAlphabet) => (message) => {
-    return message
-      .toLowerCase()
+    return normalizeString(message)
       .split('')
       .map((symbol) => {
         const index = sourceAlphabet.indexOf(symbol);
@@ -28,7 +33,7 @@ const generateCaesarCipher = (shift, plaintextAlphabet, key = '') => {
 
   return {
     cipherAlphabet,
-    encipher: makeTranslator(plaintextAlphabet, cipherAlphabet),
+    encipher: (message) => makeTranslator(plaintextAlphabet, cipherAlphabet)(message).toUpperCase(),
     decipher: makeTranslator(cipherAlphabet, plaintextAlphabet),
   };
 };

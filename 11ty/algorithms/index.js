@@ -1,7 +1,7 @@
-const generateAtbashCipher = require('./atbashCipher');
-const generateBookCipher = require('./bookCipher');
-const generateCaesarCipher = require('./caesarCipher');
-const generateVigenereCipher = require('./vigenereCipher');
+const generateAtbashCipher = require('./atbashCipher/atbashCipher');
+const generateBookCipher = require('./bookCipher/bookCipher');
+const generateCaesarCipher = require('./caesarCipher/caesarCipher');
+const generateVigenereCipher = require('./vigenereCipher/vigenereCipher');
 
 module.exports = {
   generateAtbashCipher,

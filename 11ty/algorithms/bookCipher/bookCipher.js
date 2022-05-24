@@ -1,35 +1,18 @@
-const { removePunctuation, removeWhitespace } = require('../utils');
+const { normalizeString } = require('../../transforms');
+const { getBookCipherAlphabets } = require('./bookCipher.utils');
 
 /**
- * @param {string} plaintext
- * @param {string} text
+ * @param {string} bookText
  */
-const generateBookCipher = (text, separator = ' ') => {
-  const alphabets = removePunctuation(text.toLowerCase())
-    .split(separator)
-    .map((word) => word[0])
-    .reduce(
-      (alphabets, symbol, i) => {
-        const value = i + 1;
-        if (!alphabets.cipher[symbol]) {
-          alphabets.cipher[symbol] = [];
-        }
-        if (!alphabets.plain[value]) {
-          alphabets.plain[value] = [];
-        }
-        alphabets.cipher[symbol].push(value);
-        alphabets.plain[value].push(symbol);
-        return alphabets;
-      },
-      { cipher: {}, plain: {} }
-    );
+const generateBookCipher = (bookText) => {
+  const alphabets = getBookCipherAlphabets(bookText);
 
   /**
    * Enciphers the given plaintext using the book cipher.
    * @param {string} plaintext
    */
   const encipher = (plaintext) => {
-    return removeWhitespace(removePunctuation(plaintext.toLowerCase()))
+    return normalizeString(plaintext)
       .split('')
       .map((symbol) => {
         const candidateSymbols = alphabets.cipher[symbol];
@@ -38,7 +21,8 @@ const generateBookCipher = (text, separator = ' ') => {
         const index = Math.floor(Math.random() * candidateSymbols.length);
         return candidateSymbols[index];
       })
-      .join(separator);
+      .join(' ')
+      .toUpperCase();
   };
 
   /**
@@ -48,7 +32,7 @@ const generateBookCipher = (text, separator = ' ') => {
   const decipher = (ciphertext) => {
     return ciphertext
       .toLowerCase()
-      .split(separator)
+      .split(' ')
       .map((symbol) => alphabets.plain[symbol] ?? symbol)
       .join('');
   };

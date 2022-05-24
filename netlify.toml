@@ -28,7 +28,7 @@ force = true
 _generated_by_eleventy_serverless = "caesar"
 
 [[redirects]]
-from = "/ciphers/atbash/output/"
+from = "/ciphers/atBash/output/"
 to = "/.netlify/functions/atbash"
 status = 200
 force = true

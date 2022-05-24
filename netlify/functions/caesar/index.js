@@ -1,5 +1,5 @@
 const {
-  transformString,
+  normalizeString,
   transformAlphabet,
   transformNumber,
 } = require("../../../11ty/transforms.js");
@@ -13,13 +13,13 @@ require("./eleventy-bundler-modules.js");
 
 const queryParamConfig = {
   message: {
-    transform: transformString,
+    transform: normalizeString,
     validate: (value) => {
       throwIfMissing(value, "message");
     },
   },
   key: {
-    transform: transformString,
+    transform: normalizeString,
   },
   alphabet: {
     transform: transformAlphabet,

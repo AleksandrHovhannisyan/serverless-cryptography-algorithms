@@ -3,7 +3,7 @@ const { removePunctuation, removeWhitespace } = require('./utils');
 /**
  * @param {string} string
  */
-const transformString = (string) => removePunctuation(removeWhitespace(string.toLowerCase()));
+const normalizeString = (string) => removePunctuation(removeWhitespace(string.toLowerCase()));
 
 /**
  * @param {string} alphabet
@@ -32,7 +32,7 @@ const transformQueryParams = (query, queryParamConfig) => {
 const transformNumber = (value) => Number(value);
 
 module.exports = {
-  transformString,
+  normalizeString,
   transformAlphabet,
   transformNumber,
   transformQueryParams,
