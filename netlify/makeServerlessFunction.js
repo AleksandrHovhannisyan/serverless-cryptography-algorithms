@@ -1,6 +1,6 @@
-const { EleventyServerless } = require("@11ty/eleventy");
-const { transformQueryParams } = require("../11ty/transforms");
-const { validateQueryParams } = require("../11ty/validators");
+const { EleventyServerless } = require('@11ty/eleventy');
+const { transformQueryParams } = require('../11ty/transforms');
+const { validateQueryParams } = require('../11ty/validators');
 
 /**
  * Factory function that returns a serverless function.
@@ -25,7 +25,7 @@ const makeServerlessFunction = (name, queryParamConfig) =>
       let elev = new EleventyServerless(name, {
         path: new URL(event.rawUrl).pathname,
         query: transformQueryParams(query, queryParamConfig),
-        functionsDir: "./netlify/functions/",
+        functionsDir: './netlify/functions/',
       });
 
       // Build the page
@@ -35,13 +35,13 @@ const makeServerlessFunction = (name, queryParamConfig) =>
       return {
         statusCode: 200,
         headers: {
-          "Content-Type": "text/html; charset=UTF-8",
+          'Content-Type': 'text/html; charset=UTF-8',
         },
         body: page.content,
       };
     } catch (error) {
       if (isServerless) {
-        console.log("Serverless Error:", error);
+        console.log('Serverless Error:', error);
       }
       return {
         statusCode: error.httpStatusCode || 500,
