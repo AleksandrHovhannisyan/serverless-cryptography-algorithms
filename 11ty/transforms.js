@@ -1,4 +1,4 @@
-const { removePunctuation, removeWhitespace } = require("./utils");
+const { removePunctuation, removeWhitespace } = require('./utils');
 
 /**
  * @param {string} string
@@ -9,7 +9,7 @@ const transformString = (string) => removePunctuation(removeWhitespace(string.to
  * @param {string} alphabet
  */
 const transformAlphabet = (alphabet) => {
-  return alphabet.toLocaleLowerCase().split("");
+  return alphabet.toLocaleLowerCase().split('');
 };
 
 /**
@@ -17,14 +17,14 @@ const transformAlphabet = (alphabet) => {
  * @param {Record<string, string>} query User-supplied query params.
  * @param {Record<string, string>} queryParamConfig A config with transformation functions for each param.
  */
- const transformQueryParams = (query, queryParamConfig) => {
+const transformQueryParams = (query, queryParamConfig) => {
   return Object.keys(queryParamConfig).reduce((transformedQuery, paramName) => {
     const userSuppliedValue = query[paramName] ?? '';
     const config = queryParamConfig[paramName];
     transformedQuery[paramName] = config.transform?.(userSuppliedValue) ?? userSuppliedValue;
     return transformedQuery;
   }, {});
-}
+};
 
 /**
  * @param {string} value

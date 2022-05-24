@@ -1,10 +1,10 @@
-const { removePunctuation, removeWhitespace } = require("../utils");
+const { removePunctuation, removeWhitespace } = require('../utils');
 
 /**
  * @param {string} plaintext
  * @param {string} text
  */
-const generateBookCipher = (text, separator = " ") => {
+const generateBookCipher = (text, separator = ' ') => {
   const alphabets = removePunctuation(text.toLowerCase())
     .split(separator)
     .map((word) => word[0])
@@ -30,7 +30,7 @@ const generateBookCipher = (text, separator = " ") => {
    */
   const encipher = (plaintext) => {
     return removeWhitespace(removePunctuation(plaintext.toLowerCase()))
-      .split("")
+      .split('')
       .map((symbol) => {
         const candidateSymbols = alphabets.cipher[symbol];
         // if the sample text is not sufficiently large, there may not be a word that starts with that letter
@@ -50,7 +50,7 @@ const generateBookCipher = (text, separator = " ") => {
       .toLowerCase()
       .split(separator)
       .map((symbol) => alphabets.plain[symbol] ?? symbol)
-      .join("");
+      .join('');
   };
 
   return {

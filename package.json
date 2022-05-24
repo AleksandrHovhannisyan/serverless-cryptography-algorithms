@@ -6,11 +6,17 @@
   "license": "MIT",
   "scripts": {
     "serve": "npx @11ty/eleventy --serve --incremental",
-    "build": "npx @11ty/eleventy"
+    "build": "npx @11ty/eleventy",
+    "lint": "eslint --cache \"11ty/**/*.{js,jsx,ts,tsx}\"",
+    "lint:fix": "eslint --cache --fix \"11ty/**/*.{js,jsx,ts,tsx}\""  
   },
   "devDependencies": {
     "@11ty/eleventy": "2.0.0-canary.9",
     "clean-css": "^5.3.0",
-    "netlify-cli": "^10.3.0"
+    "eslint": "^8.16.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "netlify-cli": "^10.3.0",
+    "prettier": "^2.6.2"
   }
 }

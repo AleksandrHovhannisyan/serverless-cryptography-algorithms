@@ -1,18 +1,18 @@
-const CleanCSS = require("clean-css");
+const CleanCSS = require('clean-css');
 const {
   generateCaesarCipher,
   generateAtbashCipher,
   generateVigenereCipher,
   generateBookCipher,
-} = require("./algorithms");
+} = require('./algorithms');
 
 const toISOString = (dateString) => dateString.toISOString();
 
 const keylength = (obj) => Object.keys(obj ?? {}).length;
 
 const toSentenceCase = (str) => {
-  const [first, ...rest] = str.split("");
-  return `${first.toUpperCase()}${rest.join("")}`;
+  const [first, ...rest] = str.split('');
+  return `${first.toUpperCase()}${rest.join('')}`;
 };
 
 const cssminify = (css) => new CleanCSS({}).minify(css).styles;
@@ -25,19 +25,15 @@ const cssminify = (css) => new CleanCSS({}).minify(css).styles;
  */
 const makeCipherFilter = (query, algorithm) => {
   switch (algorithm) {
-    case "caesar": {
-      const algorithm = generateCaesarCipher(
-        query.shift,
-        query.alphabet,
-        query.key
-      );
+    case 'caesar': {
+      const algorithm = generateCaesarCipher(query.shift, query.alphabet, query.key);
       const operation = algorithm[query.operation];
       return {
         alphabet: algorithm.cipherAlphabet,
         message: operation?.(query.message),
       };
     }
-    case "atbash": {
+    case 'atbash': {
       const algorithm = generateAtbashCipher(query.alphabet);
       const operation = algorithm[query.operation];
       return {
@@ -45,7 +41,7 @@ const makeCipherFilter = (query, algorithm) => {
         message: operation?.(query.message),
       };
     }
-    case "vigenere": {
+    case 'vigenere': {
       const algorithm = generateVigenereCipher(query.alphabet, query.key);
       const operation = algorithm[query.operation];
       return {
@@ -53,19 +49,16 @@ const makeCipherFilter = (query, algorithm) => {
         message: operation?.(query.message),
       };
     }
-    case "book": {
+    case 'book': {
       const algorithm = generateBookCipher(query.bookText);
       const operation = algorithm[query.operation];
       return {
-        alphabet:
-          query.operation === "encipher"
-            ? algorithm.alphabets.cipher
-            : algorithm.alphabets.plain,
+        alphabet: query.operation === 'encipher' ? algorithm.alphabets.cipher : algorithm.alphabets.plain,
         message: operation?.(query.message),
       };
     }
     default: {
-      throw new Error("Unrecognized algorithm");
+      throw new Error('Unrecognized algorithm');
     }
   }
 };

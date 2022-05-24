@@ -1,14 +1,14 @@
 /**
  * Removes all whitespace from the given string.
- * @param {string} string 
+ * @param {string} string
  */
- const removeWhitespace = (string) => string.replace(/\s/g, '');
+const removeWhitespace = (string) => string.replace(/\s/g, '');
 
- /**
-  * Removes all punctuation from the given string.
-  * @param {string} string 
-  */
- const removePunctuation = (string) => string.replace(/[\.,'"\?\!\:;&@#\$\*\+\(\)\{\}\[\]\u2013\u2014\-\^\/]/g, "");
+/**
+ * Removes all punctuation from the given string.
+ * @param {string} string
+ */
+const removePunctuation = (string) => string.replace(/[.,'"?!:;&@#$*+(){}[\]\u2013\u2014\-^/]/g, '');
 
 /** Shifts the given array by `shift` spaces. If `shift` is positive, the array is shifted to the right. If it's negative, it is shifted to the left. */
 const shiftArray = (array, shift) => {
@@ -26,7 +26,7 @@ const throwIf = (condition, message) => {
   if (condition) {
     throw new Error(message);
   }
-}
+};
 
 module.exports = {
   shiftArray,

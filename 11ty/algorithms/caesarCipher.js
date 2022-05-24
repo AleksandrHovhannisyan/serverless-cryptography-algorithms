@@ -1,34 +1,29 @@
-const { shiftArray } = require("../utils");
+const { shiftArray } = require('../utils');
 
 /**
  * @param {number} shift The rightward shift to apply to the keyed alphabet.
  * @param {string[]} plaintextAlphabet The plaintext alphabet that exhaustively lists all symbols that may or may not be used in a plaintext message.
  * @param {string} key A key with which to seed the cipher alphabet, introducing noise.
  */
-const generateCaesarCipher = (shift, plaintextAlphabet, key = "") => {
+const generateCaesarCipher = (shift, plaintextAlphabet, key = '') => {
   // Example: HELLO => HELO
-  const uniqueKeySymbols = new Set(key.toLowerCase().split(""));
+  const uniqueKeySymbols = new Set(key.toLowerCase().split(''));
 
   // Example: abcdfgijkmnpqrstuvwxyz
-  const unusedAlphabetSymbols = plaintextAlphabet.filter(
-    (symbol) => !uniqueKeySymbols.has(symbol)
-  );
+  const unusedAlphabetSymbols = plaintextAlphabet.filter((symbol) => !uniqueKeySymbols.has(symbol));
 
   // Example: If shift = 13 and key = HELLO, we get mnpqrstuvwxyzheloabcdfgijk
-  const cipherAlphabet = shiftArray(
-    Array.from(uniqueKeySymbols).concat(unusedAlphabetSymbols),
-    shift
-  );
+  const cipherAlphabet = shiftArray(Array.from(uniqueKeySymbols).concat(unusedAlphabetSymbols), shift);
 
   const makeTranslator = (sourceAlphabet, targetAlphabet) => (message) => {
     return message
       .toLowerCase()
-      .split("")
+      .split('')
       .map((symbol) => {
         const index = sourceAlphabet.indexOf(symbol);
         return targetAlphabet[index];
       })
-      .join("");
+      .join('');
   };
 
   return {

@@ -12,7 +12,7 @@ function outputShortcode(children) {
   return `<section>
     <h2 id="output">Output</h2>
     ${children}
-  </section>`
+  </section>`;
 }
 
 module.exports = {

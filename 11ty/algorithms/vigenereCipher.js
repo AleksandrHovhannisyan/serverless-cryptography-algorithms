@@ -1,4 +1,4 @@
-const generateCaesarCipher = require("./caesarCipher");
+const generateCaesarCipher = require('./caesarCipher');
 
 /**
  *
@@ -7,30 +7,23 @@ const generateCaesarCipher = require("./caesarCipher");
  */
 const generateVigenereCipher = (plaintextAlphabet, key) => {
   const n = plaintextAlphabet.length;
-  const keySymbols = key.toLocaleLowerCase().split("");
+  const keySymbols = key.toLocaleLowerCase().split('');
 
-  const vigenereSquare = Array.from({ length: n }, (_v, index) =>
-    generateCaesarCipher(index + 1, plaintextAlphabet)
-  );
+  const vigenereSquare = Array.from({ length: n }, (_v, index) => generateCaesarCipher(index + 1, plaintextAlphabet));
 
   const makeTranslator = (getOperation) => (message) => {
-    const headerRow = Array.from(
-      { length: message.length },
-      (_v, index) => keySymbols[index % keySymbols.length]
-    );
+    const headerRow = Array.from({ length: message.length }, (_v, index) => keySymbols[index % keySymbols.length]);
 
     return message
       .toLocaleLowerCase()
-      .split("")
+      .split('')
       .map((symbol, index) => {
         const headerKey = headerRow[index];
-        const caesarCipher = vigenereSquare.filter(
-          (row) => row.cipherAlphabet[0] === headerKey
-        )[0];
+        const caesarCipher = vigenereSquare.filter((row) => row.cipherAlphabet[0] === headerKey)[0];
         const operation = getOperation(caesarCipher);
         return operation(symbol);
       })
-      .join("");
+      .join('');
   };
 
   return {
