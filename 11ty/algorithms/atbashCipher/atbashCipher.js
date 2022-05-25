@@ -1,10 +1,15 @@
 const { normalizeString } = require('../../transforms');
 
 /**
- * @param {string[]} plaintextAlphabet The plaintext alphabet that exhaustively lists all symbols that may or may not be used in a plaintext message.
+ * @param {string} plaintextAlphabet The plaintext alphabet that exhaustively lists all symbols that may or may not be used in a plaintext message.
  */
 const generateAtbashCipher = (plaintextAlphabet) => {
-  const cipherAlphabet = plaintextAlphabet.map((symbol) => symbol.toLowerCase()).reverse();
+  plaintextAlphabet = normalizeString(plaintextAlphabet);
+
+  const cipherAlphabet = plaintextAlphabet
+    .split('')
+    .map((symbol) => symbol.toLowerCase())
+    .reverse();
 
   /**
    * @param {string} plaintext The plaintext message to encipher.

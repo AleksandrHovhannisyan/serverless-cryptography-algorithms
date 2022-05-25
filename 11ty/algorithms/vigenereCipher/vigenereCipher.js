@@ -1,16 +1,18 @@
+const { normalizeString } = require('../../transforms');
 const { loopString, removePunctuation, removeWhitespace } = require('../../utils');
 const generateCaesarCipher = require('../caesarCipher/caesarCipher');
 
 /**
  *
- * @param {string[]} plaintextAlphabet An alphabet exhaustively listing all of the symbols that can be found in the plaintext message.
+ * @param {string} plaintextAlphabet An alphabet exhaustively listing all of the symbols that can be found in the plaintext message.
  * @param {string} key A key with which to seed the Vigenere generator.
  */
 const generateVigenereCipher = (plaintextAlphabet, key) => {
-  const n = plaintextAlphabet.length;
-  key = removePunctuation(key.toLowerCase());
+  plaintextAlphabet = normalizeString(plaintextAlphabet);
+  key = normalizeString(key);
 
   // Create n Caesar Cipher rows, where each row uses a shift of +1 from the previous (starting at 1)
+  const n = plaintextAlphabet.length;
   const vigenereSquare = Array.from({ length: n }, (_v, index) =>
     generateCaesarCipher(-(index + 1), plaintextAlphabet)
   );
