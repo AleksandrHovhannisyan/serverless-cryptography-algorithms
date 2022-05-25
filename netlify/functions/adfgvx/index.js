@@ -12,7 +12,10 @@ const queryParamConfig = {
   key: {
     validate: (value) => {
       throwIfMissing(value, 'key');
-      throwIf(!value.length, 'key must be a non-empty string.');
+      const length = value.length;
+      throwIf(!length, 'key must be a non-empty string.');
+      const uniqueKeySymbols = new Set(value.split(''));
+      throwIf(length !== uniqueKeySymbols.size, 'key cannot contain duplicate symbols.');
     },
   },
   alphabet: {
