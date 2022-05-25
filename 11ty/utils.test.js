@@ -1,4 +1,4 @@
-const { removePunctuation, rotate, loopString, collapseConsecutiveWhitespace } = require('./utils');
+const { removePunctuation, rotate, loopString, collapseConsecutiveWhitespace, chunk, getIndexMap } = require('./utils');
 
 describe('utils', () => {
   describe('removePunctuation', () => {
@@ -55,6 +55,30 @@ describe('utils', () => {
     });
     it('wraps around to the start when it runs out of characters', () => {
       expect(loopString('hello', 12)).toStrictEqual('hellohellohe');
+    });
+  });
+
+  describe('getIndexMap', () => {
+    it('generates an index map', () => {
+      const indexMap = getIndexMap(['a', 'd', 'f', 'g', 'v', 'x']);
+      expect(indexMap.get('a')).toStrictEqual(0);
+      expect(indexMap.get('d')).toStrictEqual(1);
+      expect(indexMap.get('f')).toStrictEqual(2);
+      expect(indexMap.get('g')).toStrictEqual(3);
+      expect(indexMap.get('v')).toStrictEqual(4);
+      expect(indexMap.get('x')).toStrictEqual(5);
+    });
+  });
+
+  describe('chunk', () => {
+    it('chunks an array evenly', () => {
+      expect(chunk(['a', 'b', 'c', 'd'], 2)).toStrictEqual([
+        ['a', 'b'],
+        ['c', 'd'],
+      ]);
+    });
+    it('handles uneven chunks', () => {
+      expect(chunk(['a', 'b', 'c', 'd', 'e', 'f', 'g'], 2)).toStrictEqual([['a', 'b'], ['c', 'd'], ['e', 'f'], ['g']]);
     });
   });
 });

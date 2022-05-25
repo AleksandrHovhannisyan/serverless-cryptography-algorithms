@@ -63,6 +63,31 @@ const throwIf = (condition, message) => {
   }
 };
 
+/**
+ * Maps each array entry to its index.
+ * @param {any[]} arr
+ * @returns {Map<any, number>}
+ */
+const getIndexMap = (arr) => {
+  return arr.reduce((map, entry, i) => {
+    map.set(entry, i);
+    return map;
+  }, new Map());
+};
+
+/**
+ * Split an array into even chunks. If step is not a multiple of the array length, the last few chunks may be shorter.
+ * @param {any[]} arr
+ * @param {number} step
+ */
+const chunk = (arr, step) => {
+  const chunked = [];
+  for (let i = 0; i < arr.length; i += step) {
+    chunked.push(arr.slice(i, i + step));
+  }
+  return chunked;
+};
+
 module.exports = {
   rotate,
   throwIf,
@@ -70,4 +95,6 @@ module.exports = {
   removeWhitespace,
   collapseConsecutiveWhitespace,
   removePunctuation,
+  chunk,
+  getIndexMap,
 };

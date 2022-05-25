@@ -1,0 +1,33 @@
+---
+id: adfgvx
+title: ADFGVX Cipher
+description: A cipher used by the Germans in World War I. The algorithm first performs a monoalphabetic substitution on the plaintext using a 6x6 grid randomly populated with a-z and 0-9. Rows and columns are labeled with the letters A, D, F, G, V, X (hence the name). A plaintext symbol is enciphered as its pair of row and column labels. The second stage of the algorithm uses a keyword to perform a transposition cipher on the result from the first stage. If the message length is not a multiple of the keyword, it is padded at the end. In practice, the final result would be transmitted using Morse code. The letters A, D, F, G, V, and X were chosen due to their distinct representations in Morse code, making it easier to transmit and read messages.
+infoUrl: https://en.wikipedia.org/wiki/ADFGVX_cipher#ADFGVX
+---
+
+{% form %}
+    <label>Message <textarea name="message" minlength="0" required>{{ eleventy.serverless.query.message | default: '' }}</textarea></label>
+    <label>36 characters representing a 6x6 alphabet square <input name="alphabet" type="text" value="{{ eleventy.serverless.query.alphabet | default: '8p3d1nlt4oah7kbc5zju6wgmxsvir29ey0fq' }}" maxlength="36" minlength="36" required></label>
+    <label>Key <input name="key" type="text" value="{{ eleventy.serverless.query.key | default: '' }}" required></label>
+    <label>
+        Operation
+        {% assign operations = "encipher,decipher" | split: "," %}
+        <select name="operation">
+            {% for operation in operations %}
+                <option value="{{ operation }}" {% if eleventy.serverless.query.operation == operation %}selected{% endif %}>{{ operation | toSentenceCase }}</option>
+            {% endfor %}
+        </select>
+    </label>
+{% endform %}
+{% assign queryLength = eleventy.serverless.query | keylength %}
+{% if queryLength > 0 %}
+    {% assign result = eleventy.serverless.query | makeCipher: id %}
+    {% output %}
+        <dl>
+            <div>
+                <dt>Message</dt>
+                <dd>{{ result.message }}</dd>
+            </div>
+        </dl>
+    {% endoutput %}
+{% endif %}

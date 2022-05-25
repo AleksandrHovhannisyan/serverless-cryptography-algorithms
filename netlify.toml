@@ -7,6 +7,13 @@ publish = "_site/"
 command = "npm run build"
 
 [[redirects]]
+from = "/ciphers/adfgvx/output/"
+to = "/.netlify/functions/adfgvx"
+status = 200
+force = true
+_generated_by_eleventy_serverless = "adfgvx"
+
+[[redirects]]
 from = "/ciphers/book/output/"
 to = "/.netlify/functions/book"
 status = 200

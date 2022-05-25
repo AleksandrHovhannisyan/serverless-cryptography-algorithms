@@ -5,6 +5,7 @@ const {
   generateVigenereCipher,
   generateBookCipher,
 } = require('./algorithms');
+const generateADFGVXCipher = require('./algorithms/adfgvxCipher/adfgvxCipher');
 
 const toISOString = (dateString) => dateString.toISOString();
 
@@ -54,6 +55,13 @@ const makeCipherFilter = (query, algorithm) => {
       const operation = algorithm[query.operation];
       return {
         alphabet: query.operation === 'encipher' ? algorithm.alphabets.cipher : algorithm.alphabets.plain,
+        message: operation?.(query.message),
+      };
+    }
+    case 'adfgvx': {
+      const algorithm = generateADFGVXCipher(query.alphabet, query.key);
+      const operation = algorithm[query.operation];
+      return {
         message: operation?.(query.message),
       };
     }

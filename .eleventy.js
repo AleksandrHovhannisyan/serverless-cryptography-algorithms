@@ -30,6 +30,7 @@ module.exports = (eleventyConfig) => {
   createServerlessRoute("caesar");
   createServerlessRoute("vigenere");
   createServerlessRoute("book");
+  createServerlessRoute("adfgvx");
 
   return {
     dir: {
