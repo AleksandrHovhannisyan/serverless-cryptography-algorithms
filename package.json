@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "serve": "npx @11ty/eleventy --serve --incremental",
-    "build": "npx test && npx @11ty/eleventy",
+    "build": "npx jest && npx @11ty/eleventy",
     "lint": "eslint --cache \"11ty/**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "eslint --cache --fix \"11ty/**/*.{js,jsx,ts,tsx}\"",
     "test": "npx jest",
