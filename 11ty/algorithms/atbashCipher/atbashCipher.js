@@ -21,7 +21,8 @@ const generateAtbashCipher = (plaintextAlphabet) => {
         const index = plaintextAlphabet.indexOf(symbol);
         return cipherAlphabet[index];
       })
-      .join('');
+      .join('')
+      .toUpperCase();
   };
 
   /**
