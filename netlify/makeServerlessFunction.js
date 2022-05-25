@@ -1,5 +1,4 @@
 const { EleventyServerless } = require('@11ty/eleventy');
-const { transformQueryParams } = require('../11ty/transforms');
 const { validateQueryParams } = require('../11ty/validators');
 
 /**
@@ -19,12 +18,10 @@ const makeServerlessFunction = (name, queryParamConfig) =>
         validateQueryParams(query, queryParamConfig);
       }
 
-      // Unfortunately, this has to be done before validating query params.
-      // If we don't do this, 11ty fails to build entirely. Grr.
       // Init the serverless builder
       let elev = new EleventyServerless(name, {
         path: new URL(event.rawUrl).pathname,
-        query: transformQueryParams(query, queryParamConfig),
+        query,
         functionsDir: './netlify/functions/',
       });
 
