@@ -9,7 +9,7 @@ infoUrl: https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher
     <label>Message <textarea name="message" minlength="0" required>{{ eleventy.serverless.query.message | default: '' }}</textarea></label>
     <label>Key <input name="key" type="text" required value="{{ eleventy.serverless.query.key | default: '' }}"></label>
     <label>Plaintext alphabet <input name="alphabet" type="text" value="{{ eleventy.serverless.query.alphabet | default: alphabets.english }}" required></label>
-    {% include "operationPicker.html" operations: "encipher,decipher" %}
+    {% render "operationPicker.html" operations: "encipher,decipher" %}
 {% endform %}
 {% assign queryLength = eleventy.serverless.query | keylength %}
 {% if queryLength > 0 %}
