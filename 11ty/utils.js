@@ -47,8 +47,8 @@ const rotate = (array, shift) => {
  * @param {number} targetLength The number of desired characters in the final string.
  */
 const loopString = (str, targetLength) => {
-  if (targetLength < str.length) {
-    throw new Error(`Cannot loop the string ${str} because the target length ${targetLength} is less than its length.`);
+  if (targetLength <= str.length) {
+    return str;
   }
   return Array.from({ length: targetLength }, (_v, index) => str[index % str.length]).join('');
 };

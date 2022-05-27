@@ -47,8 +47,8 @@ describe('utils', () => {
   });
 
   describe('loopString', () => {
-    it('throws if the target length is less than the string length', () => {
-      expect(() => loopString('hello', 2)).toThrow();
+    it('returns the original string if the target length is less than the string length', () => {
+      expect(loopString('hello', 2)).toStrictEqual('hello');
     });
     it('returns the original string if the target length matches its length', () => {
       expect(loopString('hello', 5)).toStrictEqual('hello');

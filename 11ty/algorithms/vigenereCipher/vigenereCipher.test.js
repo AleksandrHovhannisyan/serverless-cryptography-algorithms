@@ -9,4 +9,10 @@ describe('vigenere cipher', () => {
     expect(ciphertext).toStrictEqual('DPRYEVNTNBUKWIAOXBUKWWBT');
     expect(vigenere.decipher(ciphertext)).toStrictEqual('thesunandthemaninthemoon');
   });
+  it('supports keys that are longer than the length of the plaintext message', () => {
+    const vigenere = generateVigenereCipher(alphabets.english, 'goodbye');
+    const ciphertext = vigenere.encipher('hello');
+    expect(ciphertext).toStrictEqual('NSZOP');
+    expect(vigenere.decipher(ciphertext)).toStrictEqual('hello');
+  });
 });
