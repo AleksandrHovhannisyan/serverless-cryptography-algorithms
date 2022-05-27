@@ -1,0 +1,11 @@
+{% assign operationsList = operations | split: "," %}
+<label>
+    Operation
+    <select name="operation">
+        {% for operation in operationsList %}
+            <option value="{{ operation }}" {% if eleventy.serverless.query.operation==operation %}selected{% endif %}>
+                {{ operation | toSentenceCase }}
+            </option>
+        {% endfor %}
+    </select>
+</label>

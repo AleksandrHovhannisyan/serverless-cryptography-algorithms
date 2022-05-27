@@ -12,15 +12,7 @@ The bee, of course, flies anyway because bees don't care what humans think is im
 {% form %}
     <label>Book text <textarea name="bookText" minlength="0" required>{{ eleventy.serverless.query.bookText | default: defaultBookText }}</textarea></label>
     <label>Message <textarea name="message" minlength="0" required>{{ eleventy.serverless.query.message | default: '' }}</textarea></label>
-    <label>
-        Operation
-        {% assign operations = "encipher,decipher" | split: "," %}
-        <select name="operation">
-            {% for operation in operations %}
-                <option value="{{ operation }}" {% if eleventy.serverless.query.operation == operation %}selected{% endif %}>{{ operation | toSentenceCase }}</option>
-            {% endfor %}
-        </select>
-    </label>
+    {% include "operationPicker.html" operations: "encipher,decipher" %}
 {% endform %}
 {% assign queryLength = eleventy.serverless.query | keylength %}
 {% if queryLength > 0 %}
