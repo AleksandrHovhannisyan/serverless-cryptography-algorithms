@@ -4,12 +4,15 @@ title: ADFGVX Cipher
 description: A cipher used by the Germans in World War I. The algorithm first performs a monoalphabetic substitution on the plaintext using a 6x6 grid randomly populated with a-z and 0-9. Rows and columns are labeled with the letters A, D, F, G, V, X (hence the name). A plaintext symbol is enciphered as its pair of row and column labels. The second stage of the algorithm uses a keyword to perform a transposition cipher on the result from the first stage. Note that the message may be padded at the end. In practice, the final result would be transmitted using Morse code. The letters A, D, F, G, V, and X were chosen due to their distinct representations in Morse code, making it easier to transmit and read messages.
 infoUrl: https://en.wikipedia.org/wiki/ADFGVX_cipher#ADFGVX
 ---
-
+{%- assign message = eleventy.serverless.query.message | default: '' -%}
+{%- assign alphabet = eleventy.serverless.query.alphabet | default: '8p3d1nlt4oah7kbc5zju6wgmxsvir29ey0fq' -%}
+{%- assign key = eleventy.serverless.query.key | default: '' -%}
+{%- assign operation = eleventy.serverless.query.operation | default: "encipher" -%}
 {% form %}
-    <label>Message <textarea name="message" minlength="0" required>{{ eleventy.serverless.query.message | default: '' }}</textarea></label>
-    <label>36 characters representing a 6x6 alphabet square <input name="alphabet" type="text" value="{{ eleventy.serverless.query.alphabet | default: '8p3d1nlt4oah7kbc5zju6wgmxsvir29ey0fq' }}" maxlength="36" minlength="36" required></label>
-    <label>Key (no duplicate symbols) <input name="key" type="text" value="{{ eleventy.serverless.query.key | default: '' }}" required></label>
-    {% render "operationPicker.html" operations: "encipher,decipher", selectedOperation: eleventy.serverless.query.operation %}
+    <label>Message <textarea name="message" minlength="0" required>{{ message }}</textarea></label>
+    <label>36 characters representing a 6x6 alphabet square <input name="alphabet" type="text" value="{{ alphabet }}" maxlength="36" minlength="36" required></label>
+    <label>Key (no duplicate symbols) <input name="key" type="text" value="{{ key }}" required></label>
+    {% render "operationPicker.html" operations: "encipher,decipher", selectedOperation: operation %}
 {% endform %}
 {% assign queryLength = eleventy.serverless.query | keylength %}
 {% if queryLength > 0 %}

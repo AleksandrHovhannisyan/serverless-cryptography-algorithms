@@ -4,11 +4,13 @@ title: Atbash Cipher
 description: A naive monoalphabetic substitution cipher that simply reverses the plaintext alphabet.
 infoUrl: https://en.wikipedia.org/wiki/Atbash
 ---
-
+{%- assign message = eleventy.serverless.query.message | default: '' -%}
+{%- assign alphabet = eleventy.serverless.query.alphabet | default: alphabets.english -%}
+{%- assign operation = eleventy.serverless.query.operation | default: "encipher" -%}
 {% form %}
-    <label>Message <textarea name="message" minlength="0" required>{{ eleventy.serverless.query.message | default: '' }}</textarea></label>
-    <label>Plaintext alphabet <input name="alphabet" type="text" value="{{ eleventy.serverless.query.alphabet | default: alphabets.english }}" required></label>
-    {% render "operationPicker.html" operations: "encipher,decipher", selectedOperation: eleventy.serverless.query.operation %}
+    <label>Message <textarea name="message" minlength="0" required>{{ message }}</textarea></label>
+    <label>Plaintext alphabet <input name="alphabet" type="text" value="{{ alphabet }}" required></label>
+    {% render "operationPicker.html" operations: "encipher,decipher", selectedOperation: operation %}
 {% endform %}
 {% assign queryLength = eleventy.serverless.query | keylength %}
 {% if queryLength > 0 %}
