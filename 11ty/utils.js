@@ -14,7 +14,7 @@ const collapseConsecutiveWhitespace = (string) => string.replace(/\s+/g, ' ');
  * @param {string} string
  */
 const removePunctuation = (string) => {
-  return string.replace(/[.,'"?!:;&@#$*+(){}[\]^/]/g, '').replace(/[-\u2013\u2014]/g, ' ');
+  return string.replace(/[~`!@#$%^&*()_\-+={[}\]|\\:;"'<,>.?/\u2013\u2014]/g, '');
 };
 
 /** Rotates the given array by `shift` spaces. If `shift` is positive, the array is rotated to the right. If it's negative, it is rotated to the left.

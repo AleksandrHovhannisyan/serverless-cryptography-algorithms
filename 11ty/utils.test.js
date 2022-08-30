@@ -3,10 +3,8 @@ const { removePunctuation, rotate, loopString, collapseConsecutiveWhitespace, ch
 describe('utils', () => {
   describe('removePunctuation', () => {
     it('removes common punctuation from text', () => {
-      const result = removePunctuation(
-        `Hey, how's it going?! Testing—I'm testing (testing...). You owe me $5; abc@domain.com.`
-      );
-      expect(result).toStrictEqual(`Hey hows it going Testing Im testing testing You owe me 5 abcdomaincom`);
+      const result = removePunctuation(`~\`!@#$%^&*()_-+={[}]|\\:;"'<,>.?/\u2013\u2014`);
+      expect(result).toStrictEqual(``);
     });
   });
 
