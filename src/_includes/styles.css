@@ -104,6 +104,3 @@ th {
     white-space: nowrap;
     padding: 6px;
 }
-.active-vigenere-alphabet {
-    background-color: var(--color-surface-1);
-}
