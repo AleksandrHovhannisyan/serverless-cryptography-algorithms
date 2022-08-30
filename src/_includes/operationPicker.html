@@ -3,7 +3,7 @@
     Operation
     <select name="operation">
         {% for operation in operations %}
-            <option value="{{ operation }}" {% if eleventy.serverless.query.operation==operation %}selected{% endif %}>
+            <option value="{{ operation }}" {% if selectedOperation == operation %}selected{% endif %}>
                 {{ operation | toSentenceCase }}
             </option>
         {% endfor %}
