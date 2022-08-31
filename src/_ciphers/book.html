@@ -4,6 +4,7 @@ title: Book Cipher
 description: A homophonic substitution cipher that maps each symbol in the plaintext to one or more numbers. This is done by taking a sample of text, numbering each word in the text, and mapping the first letter of each word to its corresponding number. A given plaintext symbol is then enciphered by randomly substituting it with one of its candidate numbers. A sufficiently large sample text should be chosen so that every symbol of the plaintext appears at the start of a word. Otherwise, it will be enciphered as-is.
 infoUrl: https://en.wikipedia.org/wiki/Book_cipher 
 ---
+{%- comment -%}Statically rendered input page OR server-rendered output page with form populated via query params{%- endcomment -%}
 {%- capture defaultBookText -%}
 According to all known laws of aviation, there is no way a bee should be able to fly.
 Its wings are too small to get its fat little body off the ground.
@@ -17,8 +18,8 @@ The bee, of course, flies anyway because bees don't care what humans think is im
     <label>Message <textarea name="message" minlength="0" required>{{ message }}</textarea></label>
     {% render "operationPicker.html" operations: "encipher,decipher", selectedOperation: operation %}
 {% endform %}
-{% assign queryLength = eleventy.serverless.query | keylength %}
-{% if queryLength > 0 %}
+{%- comment -%}Server-rendered output page{%- endcomment -%}
+{% if eleventy.serverless %}
     {% assign result = eleventy.serverless.query | makeCipher: id %}
     {% output %}
         <dl>

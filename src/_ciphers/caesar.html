@@ -4,6 +4,7 @@ title: Keyed Caesar Cipher
 description: A monoalphabetic substitution cipher that shifts a plaintext alphabet by a certain number of places to the right to produce a cipher alphabet. In a variation known as the keyed Caesar cipher, the plaintext alphabet is 'keyed' (prefixed) with non-repeating letters from a chosen passphrase or word, and the resulting keyed alphabet is then shifted. Of particular note is a Caesar cipher of shift 13 performed on the English alphabet—known as rot13—because enciphering and deciphering are symmetric operations.
 infoUrl: https://en.wikipedia.org/wiki/Caesar_cipher 
 ---
+{%- comment -%}Statically rendered input page OR server-rendered output page with form populated via query params{%- endcomment -%}
 {%- assign message = eleventy.serverless.query.message | default: '' -%}
 {%- assign shift = eleventy.serverless.query.shift | default: 13 -%}
 {%- assign key = eleventy.serverless.query.key | default: '' -%}
@@ -16,8 +17,8 @@ infoUrl: https://en.wikipedia.org/wiki/Caesar_cipher
     <label>Plaintext alphabet <input name="alphabet" type="text" value="{{ alphabet }}" required></label>
     {% render "operationPicker.html" operations: "encipher,decipher", selectedOperation: operation %}
 {% endform %}
-{% assign queryLength = eleventy.serverless.query | keylength %}
-{% if queryLength > 0 %}
+{%- comment -%}Server-rendered output page{%- endcomment -%}
+{% if eleventy.serverless %}
     {% assign result = eleventy.serverless.query | makeCipher: id %}
     {% output %}
         <dl>

@@ -4,6 +4,7 @@ title: Vigenère Cipher
 description: A polyalphabetic substitution cipher that generates an nxn square of Caesar ciphers. Each symbol in the plaintext message is enciphered using a different Caesar cipher alphabet to throw off frequency analysis. Which alphabet is chosen is determined by a key/passphrase.
 infoUrl: https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher
 ---
+{%- comment -%}Statically rendered input page OR server-rendered output page with form populated via query params{%- endcomment -%}
 {% assign message = eleventy.serverless.query.message | default: '' %}
 {% assign key = eleventy.serverless.query.key | default: '' %}
 {% assign alphabet = eleventy.serverless.query.alphabet | default: alphabets.english %}
@@ -14,8 +15,8 @@ infoUrl: https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher
     <label>Plaintext alphabet <input name="alphabet" type="text" value="{{ alphabet }}" required></label>
     {% render "operationPicker.html" operations: "encipher,decipher", selectedOperation: operation %}
 {% endform %}
-{% assign queryLength = eleventy.serverless.query | keylength %}
-{% if queryLength > 0 %}
+{%- comment -%}Server-rendered output page{%- endcomment -%}
+{% if eleventy.serverless %}
     {% assign result = eleventy.serverless.query | makeCipher: id %}
     {% output %}
         <dl>
