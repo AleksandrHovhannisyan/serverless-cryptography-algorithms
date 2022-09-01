@@ -1,5 +1,8 @@
 ---
 layout: default
+eleventyComputed:
+    meta:
+        title: "{{ title }}{% if eleventy.serverless %} - Output{% endif %}"
 ---
 
 <h1>{{ title }}</h1>

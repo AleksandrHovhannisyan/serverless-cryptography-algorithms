@@ -1,6 +1,6 @@
 module.exports = {
-  layout: "algorithm",
-  tags: ["algorithms", "ciphers"],
+  layout: 'algorithm',
+  tags: ['algorithms', 'ciphers'],
   // eleventyComputed needed for data to be non-nullish
   eleventyComputed: {
     permalink: (data) => {
@@ -9,5 +9,5 @@ module.exports = {
         [data.id]: `/ciphers/${data.page.fileSlug}/output/`,
       };
     },
-  }
+  },
 };
